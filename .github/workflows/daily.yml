@@ -40,8 +40,13 @@ on:
     # catchup branch handles the residual misses by allowing a build any
     # time after `earliest REPORT_HOUR - 1` if today's report is still
     # absent from gh-pages.
+    # 2026-11: GitHub 对部分仓库的 schedule 投递出现连续数天完全断供
+    # （fork 仓库 11-17 起四天零触发，同期上游仓库正常）。触发点加密到
+    # 每小时 4 次（:07/:17/:37/:47），gate 会防止重复构建，多触发无害。
     - cron: '7 * * * *'
+    - cron: '17 * * * *'
     - cron: '37 * * * *'
+    - cron: '47 * * * *'
   workflow_dispatch:
 
 permissions:
