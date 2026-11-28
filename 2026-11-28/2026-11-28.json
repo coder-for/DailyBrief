@@ -1,140 +1,46 @@
 {
   "hero_headline": "",
   "daily_overview": "",
-  "tech_briefs": [
-    {
-      "title": "elementalsouls/Claude-BugHunter",
-      "url": "https://github.com/elementalsouls/Claude-BugHunter",
-      "source": "GitHub Trending",
-      "summary": "面向漏洞挖掘与外部红队工作的 Claude Code 技能包，内置 85 个技能、16 个斜杠命令，并按 24 类核心漏洞整理了 681 条公开披露报告模式，另含企业身份相关配置。适合安全研究员在授权测试中复用方法论与检查清单。",
-      "importance": 5
-    },
-    {
-      "title": "有了 AI 之后，开发越来越容易，推广却越来越难？",
-      "url": "https://www.v2ex.com/t/1260513",
-      "source": "V2EX",
-      "summary": "14 回复 · 程序员 节点",
-      "importance": 5
-    },
-    {
-      "title": "GPT-6 models demonstrate intrinsic protein-design capabilities",
-      "url": "https://openai.com/index/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities",
-      "source": "OpenAI News",
-      "summary": "GPT-6 models design protein structures and sequences using reasoning and code. Lab tests found evidence of binding across five targets.",
-      "importance": 5
-    },
-    {
-      "title": "From spectrum to structure: Identifying molecules with Mass Spec Skills for Google Antigravity",
-      "url": "https://deepmind.google/blog/interpreting-mass-spectra-with-google-antigravity/",
-      "source": "DeepMind Blog",
-      "summary": "Mass Spec Skills empowers scientists using Google Antigravity to interpret tandem mass spectra.",
-      "importance": 5
-    },
-    {
-      "title": "Taking Trainium3 to the Track: Generating Videos with LTX-2.5",
-      "url": "https://huggingface.co/blog/video-trainium3",
-      "source": "Hugging Face Blog",
-      "summary": "Hugging Face 博客发布技术文章，介绍如何在 Trainium3 芯片上使用 LTX-2.5 模型生成视频。",
-      "importance": 5
-    }
-  ],
-  "finance_briefs": [
-    {
-      "title": "China Import Logistics Fell 0.6% in January-October, Xinhua Says",
-      "url": "https://www.bloomberg.com/news/articles/2026-11-28/china-import-logistics-fell-0-6-in-january-october-xinhua-says",
-      "source": "Bloomberg Markets",
-      "summary": "据新华社援引中国物流与采购联合会数据，今年1至10月中国进口物流需求同比下降0.6%，较1至2月9.6%的增速进一步放缓，进口物流需求持续收缩。",
-      "importance": 5
-    },
-    {
-      "title": "The Chinese car champion turning to police and nurse robots",
-      "url": "https://www.ft.com/content/f83dd2dc-f51e-4151-9139-cf1918eb9d0a?syn-25a6b1a6=1",
-      "source": "Financial Times",
-      "summary": "奇瑞汽车在电动化转型中起步较晚，正尝试转向警用机器人与护理机器人等新业务，以弥补在电动车革命中落后的差距。",
-      "importance": 5
-    },
-    {
-      "title": "My self-care ritual is a meal at a fancy restaurant - on my own",
-      "url": "https://www.bbc.co.uk/news/articles/cw8dv11dp2yeo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC Business",
-      "summary": "Solo-dining is being embraced as a self-care trend and it's reshaping the restaurant industry.",
-      "importance": 5
-    },
-    {
-      "title": "History’s warning lesson for Anthropic",
-      "url": "https://www.economist.com/finance-and-economics/2026/11/26/historys-warning-lesson-for-anthropic",
-      "source": "The Economist Finance",
-      "summary": "As tech stocks plunge, recall the fate of the East India Company",
-      "importance": 5
-    },
-    {
-      "title": "Jailed Brazil Beach Soccer Star Drawn Into Russia-US Spy Dispute",
-      "url": "https://www.bloomberg.com/news/articles/2026-11-27/jailed-brazil-beach-soccer-star-drawn-into-russia-us-spy-dispute",
-      "source": "Bloomberg Markets",
-      "summary": "一名巴西沙滩足球明星遭监禁，被卷入俄罗斯与美国的间谍争端，成为双方围绕一名疑似俄罗斯间谍的谈判筹码。",
-      "importance": 5
-    }
-  ],
-  "politics_briefs": [
-    {
-      "title": "Nigeria's 'ultimate hard man' who become an online meme",
-      "url": "https://www.bbc.co.uk/news/articles/cm3vg3lkrk03o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC World",
-      "summary": "尼日利亚一名被称为「终极硬汉」的演员成为网络迷因；在成为该国电影界家喻户晓的人物之前，他曾在广播行业建立职业生涯。",
-      "importance": 5
-    },
-    {
-      "title": "Victorian election 2026 live: voters head to the polls as Coalition seeks to topple Labor – latest news",
-      "url": "https://www.theguardian.com/australia-news/live/2026/nov/28/victorian-election-live-results-updates-premier-ben-carroll-jess-wilson-warren-pickering-2026-victoria-polls-votes-latest-news-ntwnfb",
-      "source": "The Guardian",
-      "summary": "澳大利亚维多利亚州举行州选举，工党领袖本·卡罗尔与自由党领袖杰斯·威尔逊角逐，选民前往投票站，结果预计当晚公布。",
-      "importance": 5
-    },
-    {
-      "title": "Princess Kate’s Cancer Documentary ‘Heal’: 3 Takeaways",
-      "url": "https://www.nytimes.com/2026/11/27/world/europe/princess-catherine-kate-heal-cancer-documentary.html",
-      "source": "NYT World",
-      "summary": "英国凯特王妃的30分钟授权纪录片《Heal》本周发布，披露她自2024年确诊癌症并接受治疗以来的康复情况，报道归纳三点要点。",
-      "importance": 5
-    }
-  ],
+  "tech_briefs": [],
+  "finance_briefs": [],
+  "politics_briefs": [],
   "editor_note": "",
   "keywords": [],
   "trading": {
-    "market_overview": "美股主要指数技术面仍偏弱修复：SPY 报 728.32，日内 +1.62%、5 日 +1.74%，但低于 SMA20 738.28 与 SMA50 757.20，RSI14 45，MACD 柱状值 -11.99 仍为绿柱；QQQ 日内 +2.69% 却位于 SMA20 663.51、SMA50 705.73 下方，RSI 44。个股分化明显，AAPL RSI 60.2、MACD 金叉、多头排列、距 52 周高仅 -0.63%；NVDA 则 SMA50 下穿 SMA200 死叉、空头排列、RSI 38.1。加密技术面与情绪面同步走弱，恐慌贪婪指数 10（极度恐慌），总市值 2.08 万亿美元、24 小时 -4.55%，BTC 主导率 57.8%、ETH 9.7%；BTC 59966.73 低于 SMA20 65150.5 与 SMA50 74244.35，RSI 27.1 超卖，ETH RSI 28.2 亦超卖，两者 MACD 虽见金叉，但柱体仍深在零轴下方。中概分化，BABA、0700.HK 空头排列、RSI 41.5 与 35.8，PDD RSI 65.6 相对偏强。商品外汇：黄金 3668.5 空头排列、RSI 38.9，WTI 83.08 位于三条均线下方，美元指数 104.01 多头排列、RSI 64.7、距 52 周高 -0.49%，USDCNY 6.65 触发 MACD 死叉并接近 52 周低。VIX 23.81，日内 -11.16%、5 日 -33.66%，均线仍呈多头排列。",
+    "market_overview": "美股方面，SPY 单日反弹 1.62% 但现价 728.32 仍低于 SMA20(738.28) 与 SMA50(757.20)，RSI14 为 45、MACD 柱状为负，属修复性反抽而非趋势反转；QQQ 同样位于 SMA50(705.73) 下方，RSI14 44。个股分化显著：AAPL 站上三条均线并触发 MACD 金叉、距 52 周高仅 -0.63%；TSLA 单日 +5.22%、近 5 日 +6.83% 并出现 MACD 金叉；NVDA 则触发 SMA50 下穿 SMA200 的死叉与空头排列，RSI14 38.1。加密总市值 2.03 万亿美元、24 小时 -5.96%，BTC 主导率 58.4%、ETH 9.9%，恐慌贪婪指数仅 10（极度恐慌）；BTC RSI14 25.7、ETH 27.2 双双进入超卖区，价格远低于 SMA20/50/200，但两者 MACD 柱状已转正并现金叉，属超卖中的修复读数。中概股普遍反弹（BABA +3.96%、JD +3.68%、0700.HK +3.23%），但三条均线仍呈空头排列，RSI14 处于 35-42 区间，反弹力度尚未改变均线结构。商品外汇方面，黄金 3668.5 低于 SMA20/50/200 且空头排列，WTI 原油 83.08 亦在均线下方，美元指数 RSI14 64.6 并接近 52 周高、多头排列；USDCNY 6.65 触发 MACD 死叉并逼近 52 周低；VIX 单日回落 11.16% 至 23.81，但仍高于 SMA50(19.43) 与 SMA200(18.83)。",
     "watchlist": [
       {
         "symbol": "AAPL",
         "display_name": "苹果 (AAPL)",
         "stance": "偏上行",
-        "rationale": "现价 358.54 同时站上 SMA20 349.15、SMA50 343.48 与 SMA200 304.82，构成多头排列；MACD 3.3647 高于信号线 3.151，柱状值为正，属金叉状态；RSI14 60.2 位于强势区间但未进入超买；距 52 周高仅 -0.63%，5 日累计 +2.67%，日内 +0.83%，趋势与动量读数一致偏强。"
+        "rationale": "现价 358.54 高于 SMA20(349.15)、SMA50(343.48) 与 SMA200(304.82)，呈多头排列；MACD 3.3647 高于信号线 3.151，已触发金叉；RSI14 报 60.2，尚未进入超买区；距 52 周高仅 -0.63%，近 5 日 +2.67%，趋势字段为 bullish，各项指标同向偏强。"
       },
       {
         "symbol": "TSLA",
         "display_name": "特斯拉 (TSLA)",
         "stance": "偏上行",
-        "rationale": "现价 400.00 高于 SMA20 381.98、SMA50 377.84 与 SMA200 381.00，三条均线呈粘合上抬；MACD 1.4508 上穿信号线 0.7927 形成金叉，柱状值转正；RSI14 56.4 处于中性偏强区；日内 +5.22%、5 日 +6.83% 为样本内最强短线动量，距 52 周高 -19.81%，趋势字段仍标注中性。"
+        "rationale": "单日 +5.22%、近 5 日 +6.83%，现价 400 站上 SMA20(381.98)、SMA50(377.84) 与 SMA200(381.00)；MACD 1.4508 高于信号线 0.7927，形成金叉；RSI14 为 56.4，处中性偏强区间。距 52 周高仍 -19.81%，趋势字段为 neutral，短线动量改善但中期结构尚未确认。"
       },
       {
         "symbol": "NVDA",
         "display_name": "英伟达 (NVDA)",
         "stance": "偏下行",
-        "rationale": "现价 150.49 低于 SMA20 169.32、SMA50 202.28 与 SMA200 202.68，呈空头排列，并触发 SMA50 下穿 SMA200 的死叉；RSI14 38.1 位于弱势区；MACD -16.3594 略低于信号线 -16.2677，柱体维持微负；距 52 周高 -38.16%，虽 5 日 +3.09% 有短线反抽，均线结构仍全面走坏。"
+        "rationale": "现价 150.49 低于 SMA20(169.32)、SMA50(202.28) 与 SMA200(202.68)，触发 SMA50 下穿 SMA200 的死叉并呈空头排列；RSI14 为 38.1，偏弱但未超卖；MACD -16.3594 与信号线 -16.2677 均处零轴下方；距 52 周高 -38.16%，近 5 日 +3.09% 仅为弱势反弹。"
       },
       {
-        "symbol": "0700.HK",
-        "display_name": "腾讯控股 (0700.HK)",
+        "symbol": "USDCNY=X",
+        "display_name": "美元 / 人民币 (USDCNY=X)",
         "stance": "偏下行",
-        "rationale": "现价 352 低于 SMA20 381、SMA50 401.95 与 SMA200 456.96，维持空头排列；RSI14 35.8 偏弱；MACD -17.9961 低于信号线 -14.4906，绿柱仍在扩张；距 52 周高 -44.91%。近 1 日 +3.23%、5 日 +2.33% 属超跌反弹性质，尚未收复任何一条主要均线。"
+        "rationale": "现价 6.65 低于 SMA20(6.67)、SMA50(6.68) 与 SMA200(6.77)，呈空头排列；MACD -0.0055 与信号线 -0.0055 持平并触发死叉；RSI14 为 35.0，偏弱；距 52 周低仅 0.14%，逼近区间低位，近 5 日 -0.34%，下行结构较为完整。"
       },
       {
         "symbol": "BTC-USD",
         "display_name": "比特币 (BTC-USD)",
         "stance": "中性",
-        "rationale": "RSI14 27.1 已进入超卖，MACD -4417.1322 高于信号线 -4450.8454 形成金叉且柱体转正，短线动能读数出现修复；但现价 59966.73 远低于 SMA20 65150.5、SMA50 74244.35 与 SMA200 71811.43，距 52 周高 -38.72%，5 日 -1.95%。超卖反弹信号与均线空头结构方向相反，故定为中性。"
+        "rationale": "RSI14 报 25.7，处超卖区；MACD -4339.93 高于信号线 -4429.94，柱状转正并触发金叉；但现价 59140 明显低于 SMA20(64373.25)、SMA50(73774.22) 与 SMA200(71704.24)，距 52 周高 -39.57%，近 5 日 -3.38%。超卖修复信号与均线空头结构相互抵消，指标状态呈中性。"
       }
     ],
-    "risk_caveat": "本报告仅依据输入行情数据的技术指标读数做客观描述，不构成任何投资建议或买卖依据。指标存在滞后与失真可能，过去走势不代表未来表现，请结合基本面与自身风险承受能力独立判断。仅供技术指标解读参考。",
+    "risk_caveat": "以上内容均为对公开行情数据计算所得技术指标的客观复述，不构成任何投资建议或操作指引；指标读数存在滞后与失效可能，过去走势不代表未来表现，本报告仅供技术指标解读参考。",
     "tickers": [
       {
         "symbol": "SPY",
@@ -364,50 +270,18 @@
         "group": "crypto",
         "currency": "USD",
         "exchangeName": "CCC",
-        "currentPrice": 59966.73,
-        "pct1Day": -0.8727720643966368,
-        "pct5Day": -1.9541249663339102,
-        "pct52WeekHigh": -38.72229477440359,
-        "pct52WeekLow": 8.734726942366153,
-        "sma20": 65150.49921875,
-        "sma50": 74244.3546875,
-        "sma200": 71811.4300390625,
-        "rsi14": 27.110776481325985,
-        "macd": -4417.132178080523,
-        "macdSignal": -4450.845436433053,
-        "macdHistogram": 33.71325835252992,
-        "trend": "neutral",
-        "rsiState": "oversold",
-        "signals": [
-          {
-            "type": "macd-bull-cross",
-            "label": "MACD 金叉",
-            "daysAgo": 0
-          },
-          {
-            "type": "rsi-oversold",
-            "label": "RSI 超卖"
-          }
-        ]
-      },
-      {
-        "symbol": "ETH-USD",
-        "displayName": "Ethereum",
-        "group": "crypto",
-        "currency": "USD",
-        "exchangeName": "CCC",
-        "currentPrice": 1664.2,
-        "pct1Day": -1.3948710040900507,
-        "pct5Day": -3.304659065020823,
-        "pct52WeekHigh": -51.715052775720046,
-        "pct52WeekLow": 10.467554155287969,
-        "sma20": 1826.5857849121094,
-        "sma50": 2151.0232446289065,
-        "sma200": 2106.251687011719,
-        "rsi14": 28.23533604133398,
-        "macd": -149.37884508855382,
-        "macdSignal": -154.1258500691359,
-        "macdHistogram": 4.747004980582091,
+        "currentPrice": 59140,
+        "pct1Day": -1.2133207349623911,
+        "pct5Day": -3.3833541416560498,
+        "pct52WeekHigh": -39.56709850542507,
+        "pct52WeekLow": 7.235658028569075,
+        "sma20": 64373.248828125,
+        "sma50": 73774.22109375,
+        "sma200": 71704.24078125,
+        "rsi14": 25.715182102393527,
+        "macd": -4339.934377066471,
+        "macdSignal": -4429.944164730676,
+        "macdHistogram": 90.00978766420485,
         "trend": "neutral",
         "rsiState": "oversold",
         "signals": [
@@ -423,32 +297,58 @@
         ]
       },
       {
+        "symbol": "ETH-USD",
+        "displayName": "Ethereum",
+        "group": "crypto",
+        "currency": "USD",
+        "exchangeName": "CCC",
+        "currentPrice": 1643.44,
+        "pct1Day": -1.0621533828831133,
+        "pct5Day": -3.8277945925789902,
+        "pct52WeekHigh": -52.31738152489446,
+        "pct52WeekLow": 9.089530826202658,
+        "sma20": 1802.5529357910157,
+        "sma50": 2134.1189379882812,
+        "sma200": 2103.0800854492186,
+        "rsi14": 27.2138187353096,
+        "macd": -146.48368239033903,
+        "macdSignal": -152.63719662596912,
+        "macdHistogram": 6.153514235630098,
+        "trend": "neutral",
+        "rsiState": "oversold",
+        "signals": [
+          {
+            "type": "macd-bull-cross",
+            "label": "MACD 金叉",
+            "daysAgo": 2
+          },
+          {
+            "type": "rsi-oversold",
+            "label": "RSI 超卖"
+          }
+        ]
+      },
+      {
         "symbol": "SOL-USD",
         "displayName": "Solana",
         "group": "crypto",
         "currency": "USD",
         "exchangeName": "CCC",
-        "currentPrice": 71.65,
-        "pct1Day": 1.011151733422801,
-        "pct5Day": 1.5303189553715972,
-        "pct52WeekHigh": -51.65839045717061,
-        "pct52WeekLow": 18.596924722981424,
-        "sma20": 74.9705883026123,
-        "sma50": 90.52117599487305,
-        "sma200": 87.75848045349122,
-        "rsi14": 34.35125805880432,
-        "macd": -6.004631835963849,
-        "macdSignal": -6.737661633177963,
-        "macdHistogram": 0.7330297972141135,
+        "currentPrice": 70.63,
+        "pct1Day": -1.3275675030403478,
+        "pct5Day": -1.877969618427449,
+        "pct52WeekHigh": -52.34657526852702,
+        "pct52WeekLow": 16.908594461747057,
+        "sma20": 74.18645973205567,
+        "sma50": 89.74959243774414,
+        "sma200": 87.63986034393311,
+        "rsi14": 32.84934619238807,
+        "macd": -5.72423557887933,
+        "macdSignal": -6.535866360107589,
+        "macdHistogram": 0.8116307812282582,
         "trend": "neutral",
         "rsiState": "normal",
-        "signals": [
-          {
-            "type": "macd-bull-cross",
-            "label": "MACD 金叉",
-            "daysAgo": 4
-          }
-        ]
+        "signals": []
       },
       {
         "symbol": "BABA",
@@ -559,13 +459,13 @@
         "pct5Day": -0.46126712793379454,
         "pct52WeekHigh": -34.32923991264187,
         "pct52WeekLow": 7.103234847600145,
-        "sma20": 3853.234973144531,
-        "sma50": 4049.7759814453125,
-        "sma200": 4415.824995117187,
-        "rsi14": 38.861126391064865,
-        "macd": -139.21016288616738,
-        "macdSignal": -115.23395876080953,
-        "macdHistogram": -23.976204125357853,
+        "sma20": 3851.7899780273438,
+        "sma50": 4049.1979833984374,
+        "sma200": 4415.680495605468,
+        "rsi14": 36.98242073134728,
+        "macd": -141.51556820133828,
+        "macdSignal": -115.6950398238437,
+        "macdHistogram": -25.820528377494583,
         "trend": "bearish",
         "rsiState": "normal",
         "signals": [
@@ -675,7 +575,7 @@
         "pct1Day": 1.81518047666601,
         "pct5Day": -2.296121233675502,
         "pct52WeekHigh": -7.979120059656972,
-        "pct52WeekLow": 24.772497472194136,
+        "pct52WeekLow": 0,
         "sma20": 4.96635000705719,
         "sma50": 5.070740003585815,
         "sma200": 4.617349984645844,
@@ -690,6 +590,10 @@
             "type": "macd-bear-cross",
             "label": "MACD 死叉",
             "daysAgo": 3
+          },
+          {
+            "type": "near-52w-low",
+            "label": "接近 52 周低"
           }
         ]
       },
@@ -704,13 +608,13 @@
         "pct5Day": 0.10971941525207327,
         "pct52WeekHigh": -0.4936381899933085,
         "pct52WeekLow": 8.858189429618001,
-        "sma20": 102.93270072937011,
-        "sma50": 102.20948028564453,
-        "sma200": 100.14727020263672,
-        "rsi14": 64.65266314874069,
-        "macd": 0.5920302243980586,
-        "macdSignal": 0.5335394478369521,
-        "macdHistogram": 0.05849077656110657,
+        "sma20": 102.9325008392334,
+        "sma50": 102.20940032958984,
+        "sma200": 100.14725021362305,
+        "rsi14": 64.61759335051028,
+        "macd": 0.5917113113594183,
+        "macdSignal": 0.5334756652292241,
+        "macdHistogram": 0.058235646130194274,
         "trend": "bullish",
         "rsiState": "normal",
         "signals": [
@@ -732,13 +636,13 @@
       "timestamp": "2026-11-28T00:00:00.000Z"
     },
     "crypto_global": {
-      "totalMarketCapUsd": 2082729566189.3286,
-      "total24hVolumeUsd": 68100369863.84549,
-      "marketCapChangePct24h": -4.546985665353558,
-      "btcDominance": 57.781360566812346,
-      "ethDominance": 9.748614169754958,
-      "activeCryptocurrencies": 21218
+      "totalMarketCapUsd": 2034352224297.9768,
+      "total24hVolumeUsd": 65780190697.35856,
+      "marketCapChangePct24h": -5.960392242761225,
+      "btcDominance": 58.44725597714553,
+      "ethDominance": 9.871640969886053,
+      "activeCryptocurrencies": 21183
     },
-    "generated_at": "2026-11-28T04:01:04.681Z"
+    "generated_at": "2026-11-28T11:04:30.946Z"
   }
 }
