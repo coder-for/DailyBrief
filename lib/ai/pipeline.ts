@@ -1,6 +1,5 @@
 import { jsonrepair } from "jsonrepair";
-import { LlmIncompleteResponseError } from "./errors";
-import { runLlm } from "./llm";
+import { isFatalLlmConfigError, runLlm } from "./llm";
 import { extractJson } from "./json-util";
 import { SYSTEM_PROMPT_DIGEST_EN, SYSTEM_PROMPT_DIGEST_ZH } from "./prompts";
 import { REPORT_LOCALE } from "../sources/registry";
@@ -50,6 +49,12 @@ const PER_CATEGORY_LIMIT: Record<Category, number> = {
   finance: 20,
   politics: 15,
 };
+
+/**
+ * Digest retry backoff. Four attempts spread over ~80s — enough to ride
+ * out a relay's broken upstream channel or a group rate-limit window.
+ */
+const DIGEST_RETRY_DELAYS_MS = [10_000, 25_000, 45_000];
 
 const MAX_AGE_DAYS = 14;
 
@@ -110,10 +115,11 @@ function selectRoundRobin(
 }
 
 /**
- * Keep the report publishable when both digest-generation attempts return
- * malformed/truncated JSON. The HTML view is driven by the raw article
- * sidecar, while this fallback preserves useful Markdown/JSON brief items
- * using summaries that earlier enrichment stages already produced.
+ * Keep the report publishable when every digest-generation attempt fails —
+ * malformed/truncated JSON or a flaky relay returning 400/429/5xx on each
+ * attempt. The HTML view is driven by the raw article sidecar, while this
+ * fallback preserves useful Markdown/JSON brief items using summaries that
+ * earlier enrichment stages already produced.
  */
 export function buildFallbackDailyReport(
   articles: ArticleInput[],
@@ -152,13 +158,6 @@ export function buildFallbackDailyReport(
     editor_note: "",
     keywords: [],
   };
-}
-
-function isRecoverableDigestOutputError(error: unknown): boolean {
-  return (
-    error instanceof SyntaxError ||
-    error instanceof LlmIncompleteResponseError
-  );
 }
 
 async function callOnce(userPayloadJson: string): Promise<DailyReport> {
@@ -255,6 +254,7 @@ async function callOnce(userPayloadJson: string): Promise<DailyReport> {
 export async function generateDailyReport(
   articles: ArticleInput[],
   callDigest: (userPayloadJson: string) => Promise<DailyReport> = callOnce,
+  retryDelaysMs: number[] = DIGEST_RETRY_DELAYS_MS,
 ): Promise<{ report: DailyReport; tokensUsed: number }> {
   const grouped: Record<Category, ArticleInput[]> = {
     tech: [],
@@ -278,37 +278,40 @@ export async function generateDailyReport(
   }));
   const userPayloadJson = JSON.stringify(userPayload);
 
-  let report: DailyReport;
-  try {
-    report = await callDigest(userPayloadJson);
-  } catch (firstErr) {
-    // One retry covers transient provider interruptions and occasional
-    // narration/malformed JSON on the first response.
-    console.warn(
-      `[pipeline] first digest call failed, retrying: ${
-        firstErr instanceof Error ? firstErr.message : String(firstErr)
-      }`,
-    );
+  let report: DailyReport | null = null;
+  let lastErr: unknown;
+  for (
+    let attempt = 1;
+    !report && attempt <= retryDelaysMs.length + 1;
+    attempt++
+  ) {
     try {
       report = await callDigest(userPayloadJson);
-    } catch (secondErr) {
-      if (
-        isRecoverableDigestOutputError(firstErr) &&
-        isRecoverableDigestOutputError(secondErr)
-      ) {
+    } catch (err) {
+      lastErr = err;
+      if (isFatalLlmConfigError(err)) throw err;
+      if (attempt <= retryDelaysMs.length) {
+        // Spaced retries: flaky relay pools rotate upstream channels per
+        // request, so a call that 400s instantly often succeeds on the next
+        // attempt after waiting out the broken channel.
+        const delay = retryDelaysMs[attempt - 1];
+        const msg = err instanceof Error ? err.message : String(err);
         console.warn(
-          "[pipeline] digest output invalid after 2 attempts; using enriched-article fallback",
+          `[pipeline] digest attempt ${attempt}/${retryDelaysMs.length + 1} failed, retrying in ${delay / 1000}s: ${msg}`,
         );
-        report = buildFallbackDailyReport(articles);
-      } else {
-        // Auth, quota, networking, and configuration failures remain fatal;
-        // silently publishing through those would hide actionable problems.
-        throw secondErr;
+        await new Promise((resolve) => setTimeout(resolve, delay));
       }
     }
   }
+  if (report) return { report, tokensUsed: 0 };
 
-  // Max subscription has no per-call token meter — we expose 0 for schema
-  // compatibility; consumers should treat 0 as "metric not available".
-  return { report, tokensUsed: 0 };
+  // Every attempt failed. Whether it was unusable output or a relay that
+  // kept erroring, a degraded brief built from the enriched articles is
+  // better than a red run and a missing day. Loud warning so the
+  // degradation is visible in the Actions log.
+  const msg = lastErr instanceof Error ? lastErr.message : String(lastErr);
+  console.warn(
+    `[pipeline] digest failed after ${retryDelaysMs.length + 1} attempts — publishing degraded enriched-article fallback: ${msg}`,
+  );
+  return { report: buildFallbackDailyReport(articles), tokensUsed: 0 };
 }

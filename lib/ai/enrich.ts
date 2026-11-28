@@ -1,5 +1,5 @@
 import { jsonrepair } from "jsonrepair";
-import { runLlm } from "./llm";
+import { runLlmWithRetry } from "./llm";
 import { extractJson } from "./json-util";
 import { REPORT_LOCALE } from "../sources/registry";
 
@@ -248,11 +248,17 @@ async function runEnrichment(
   const result = new Map<string, string>();
 
   try {
-    const { text } = await runLlm({
-      systemPrompt,
-      userPrompt,
-      timeoutMs: 240_000,
-    });
+    // Two attempts with a gap between them: relay pools rotate upstream
+    // channels per request, so one 400/429 hiccup shouldn't silently drop
+    // this batch's summaries for the day.
+    const { text } = await runLlmWithRetry(
+      {
+        systemPrompt,
+        userPrompt,
+        timeoutMs: 240_000,
+      },
+      [20_000],
+    );
     const cleaned = extractJson(text);
 
     let parsed: { summaries?: Array<{ url?: string; summary?: string }> };

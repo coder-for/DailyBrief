@@ -107,6 +107,58 @@ export async function runLlm(opts: LlmRunOptions): Promise<LlmRunResult> {
       return runOpenAICompat(opts, OPENAI_PRESETS[backend]);
   }
 }
+
+/**
+ * True for failures that retrying can never fix: the missing-key config
+ * error thrown before any HTTP call, and account-level rejections
+ * (invalid key / no quota / forbidden) surfaced by the SDK with a
+ * `.status`. Everything else — relay 400/429/5xx hiccups, timeouts,
+ * connection resets — is treated as transient.
+ */
+export function isFatalLlmConfigError(error: unknown): boolean {
+  if (
+    error instanceof Error &&
+    /is required for LLM_BACKEND/.test(error.message)
+  ) {
+    return true;
+  }
+  const status = (error as { status?: number } | null)?.status;
+  return status === 401 || status === 402 || status === 403;
+}
+
+/**
+ * runLlm with spaced retries for flaky OpenAI-compatible relays. Relay
+ * pools rotate upstream channels per request — a call landing on a broken
+ * channel fails fast with 400/503 while the very next one succeeds, so
+ * waiting a bit between attempts is enough to dodge them.
+ *
+ * Fatal config/auth errors are rethrown immediately; after all attempts
+ * the last error is rethrown for the caller to handle (enrichment catches,
+ * pipeline degrades to its fallback report).
+ */
+export async function runLlmWithRetry(
+  opts: LlmRunOptions,
+  delaysMs: number[] = [15_000, 30_000],
+): Promise<LlmRunResult> {
+  let lastErr: unknown;
+  for (let attempt = 1; attempt <= delaysMs.length + 1; attempt++) {
+    try {
+      return await runLlm(opts);
+    } catch (err) {
+      lastErr = err;
+      if (isFatalLlmConfigError(err)) throw err;
+      if (attempt <= delaysMs.length) {
+        const delay = delaysMs[attempt - 1];
+        const msg = err instanceof Error ? err.message : String(err);
+        console.warn(
+          `[llm] attempt ${attempt}/${delaysMs.length + 1} failed, retrying in ${delay / 1000}s: ${msg}`,
+        );
+        await new Promise((resolve) => setTimeout(resolve, delay));
+      }
+    }
+  }
+  throw lastErr;
+}
 /**
  * Cheap startup sanity-check so a misconfigured backend errors in <1s
  * instead of after 30s of source-fetching + half a dozen confusing
