@@ -211,13 +211,14 @@ async function callOnce(userPayloadJson: string): Promise<DailyReport> {
   const { text } = await runLlm({
     systemPrompt: SYSTEM_PROMPT_DIGEST,
     userPrompt,
-    // The digest output is one compact JSON report (~2k tokens). Relays
+    // The digest output is one compact JSON report (~2k tokens, but the
+    // model occasionally rambles past 4096 → finish_reason=length). Relays
     // validate input_tokens + max_tokens against the upstream channel's
     // context window (16k observed 2026-11-28) — the 8192 default pushed
     // the digest request over the edge and got it 400'd on every attempt,
     // while smaller enrichment/commentary calls passed the same minute.
-    // 4096 still leaves ~2x headroom over the largest observed output.
-    maxTokens: 4096,
+    // 6144 = input ~8k + output ~6k ≈ 14k, under the window with margin.
+    maxTokens: 6144,
   });
   const cleaned = extractJson(text);
   let parsed: Partial<DailyReport>;
