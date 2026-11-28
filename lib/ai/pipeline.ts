@@ -45,9 +45,9 @@ export interface ArticleInput extends RawArticle {
 }
 
 const PER_CATEGORY_LIMIT: Record<Category, number> = {
-  tech: 12,
-  finance: 10,
-  politics: 8,
+  tech: 10,
+  finance: 8,
+  politics: 7,
 };
 
 /**
@@ -211,6 +211,13 @@ async function callOnce(userPayloadJson: string): Promise<DailyReport> {
   const { text } = await runLlm({
     systemPrompt: SYSTEM_PROMPT_DIGEST,
     userPrompt,
+    // The digest output is one compact JSON report (~2k tokens). Relays
+    // validate input_tokens + max_tokens against the upstream channel's
+    // context window (16k observed 2026-11-28) — the 8192 default pushed
+    // the digest request over the edge and got it 400'd on every attempt,
+    // while smaller enrichment/commentary calls passed the same minute.
+    // 4096 still leaves ~2x headroom over the largest observed output.
+    maxTokens: 4096,
   });
   const cleaned = extractJson(text);
   let parsed: Partial<DailyReport>;
@@ -273,13 +280,14 @@ export async function generateDailyReport(
     url: a.url,
     source: a.source,
     category: a.category,
-    // Compact excerpt keeps the whole candidate payload ≲10k chars. The
-    // relay's upstream rejects oversized inputs with an instant 400
-    // invalid_request_error (observed 2026-11-27/28: digest 400'd on every
-    // attempt while small enrichment/commentary calls passed the same
-    // minute), and 120 chars is still plenty for the model to judge and
-    // summarize an item — output only needs 3-5 briefs per category.
-    excerpt: (a.excerpt ?? "").slice(0, 120),
+    // Compact excerpt keeps the whole candidate payload ≲8k chars. The
+    // relay's upstream validates input_tokens + max_tokens against its
+    // context window (16k observed 2026-11-28: digest got an instant 400
+    // on every attempt while smaller enrichment/commentary calls passed
+    // the same minute), and 100 chars is still plenty for the model to
+    // judge and summarize an item — output only needs 3-5 briefs per
+    // category.
+    excerpt: (a.excerpt ?? "").slice(0, 100),
     published: a.publishedAt?.toISOString() ?? "",
   }));
   const userPayloadJson = JSON.stringify(userPayload);

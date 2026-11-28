@@ -36,6 +36,15 @@ export interface LlmRunOptions {
   systemPrompt: string;
   userPrompt: string;
   timeoutMs?: number;
+  /**
+   * Output-token budget. Defaults to 8192. Call sites with small outputs
+   * (digest ≈2k tokens) should pass a lower value: relays validate
+   * `input_tokens + max_tokens` against the upstream channel's context
+   * window, and an oversized reserve makes big-input requests 400
+   * instantly even though the same input would fit with a smaller
+   * reserve (observed 2026-11-28 on a 16k-token channel).
+   */
+  maxTokens?: number;
 }
 
 export interface LlmRunResult {

@@ -109,7 +109,9 @@ export async function runOpenAICompat(
         // structure, and silent truncation made it through with just 1/16
         // entries parseable. 8192 covers all observed daily batches with
         // generous headroom. Match the explicit value Anthropic SDK uses.
-        max_tokens: 8192,
+        // Call sites may lower it (see LlmRunOptions.maxTokens): relays
+        // validate input + max_tokens against the channel's context window.
+        max_tokens: opts.maxTokens ?? 8192,
         // JSON/thinking controls are enabled only for the DeepSeek preset;
         // generic OpenAI-compatible providers keep their existing behavior.
         ...structuredOutputOptions,
