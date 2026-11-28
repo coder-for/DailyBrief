@@ -45,9 +45,9 @@ export interface ArticleInput extends RawArticle {
 }
 
 const PER_CATEGORY_LIMIT: Record<Category, number> = {
-  tech: 25,
-  finance: 20,
-  politics: 15,
+  tech: 12,
+  finance: 10,
+  politics: 8,
 };
 
 /**
@@ -273,7 +273,13 @@ export async function generateDailyReport(
     url: a.url,
     source: a.source,
     category: a.category,
-    excerpt: (a.excerpt ?? "").slice(0, 200),
+    // Compact excerpt keeps the whole candidate payload ≲10k chars. The
+    // relay's upstream rejects oversized inputs with an instant 400
+    // invalid_request_error (observed 2026-11-27/28: digest 400'd on every
+    // attempt while small enrichment/commentary calls passed the same
+    // minute), and 120 chars is still plenty for the model to judge and
+    // summarize an item — output only needs 3-5 briefs per category.
+    excerpt: (a.excerpt ?? "").slice(0, 120),
     published: a.publishedAt?.toISOString() ?? "",
   }));
   const userPayloadJson = JSON.stringify(userPayload);
